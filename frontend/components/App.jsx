@@ -5,6 +5,7 @@ import FeatherSprite from "../svgs/feather-sprite.svg";
 import StructureProvider from "./structure/StructureProvider";
 import ResourceIndex from "../screens/ResourceIndex";
 import AppLayout from "./layout/AppLayout";
+import { PortalProvider, PortalTarget } from "./portal";
 
 const render = () => (
   <>
@@ -12,13 +13,17 @@ const render = () => (
 
     <FeatherSprite style={{ display: "none" }} />
 
-    <StructureProvider>
-      {({ routes }) => (
-        <Router>
-          <AppLayout>{renderRoutes(routes)}</AppLayout>
-        </Router>
-      )}
-    </StructureProvider>
+    <PortalProvider>
+      <StructureProvider>
+        {({ routes }) => (
+          <Router>
+            <AppLayout>{renderRoutes(routes)}</AppLayout>
+          </Router>
+        )}
+      </StructureProvider>
+
+      <PortalTarget name="backdrop" />
+    </PortalProvider>
   </>
 );
 
@@ -48,6 +53,7 @@ const globalStyles = () => (
   <Global
     styles={css`
       body {
+        height: 2000px;
       }
 
       span {
