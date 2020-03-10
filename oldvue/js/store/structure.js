@@ -5,48 +5,54 @@ export default {
     return {
       ...structure,
       base_path: structure.base_path,
-      resources: structure.resources,
-    }
+      resources: structure.resources
+    };
   },
   getters: {
     resources(state, getters) {
       return state.resources;
     },
-    resourceIndexRoute: (state) => (resource) => {
+    resourceIndexRoute: state => resource => {
       return {
-        path: state.base_path + '/' + resource.path,
-        name: resource.name + '.index',
+        path: state.base_path + "/" + resource.path,
+        name: resource.name + ".index",
         props: {
-          resource,
+          resource
         }
       };
     },
-    resourceCreateRoute: (state) => (resource) => {
+    resourceCreateRoute: state => resource => {
       return {
-        path: state.base_path + '/' + resource.path + '/create',
-        name: resource.name + '.create',
+        path: state.base_path + "/" + resource.path + "/create",
+        name: resource.name + ".create",
         props: {
-          resource,
+          resource
         }
       };
     },
-    resourceEditRoute: (state) => (resource) => {
+    resourceEditRoute: state => resource => {
       return {
-        path: state.base_path + '/' + resource.path + '/:id/edit',
-        name: resource.name + '.edit',
+        path: state.base_path + "/" + resource.path + "/:id/edit",
+        name: resource.name + ".edit",
         props: {
-          resource,
+          resource
         }
       };
     },
 
     routes(state, getters) {
       return {
-        index: getters.resources.map(resource => getters.resourceIndexRoute(resource)),
-        create: getters.resources.map(resource => getters.resourceCreateRoute(resource)),
-        edit: getters.resources.map(resource => getters.resourceEditRoute(resource)),
-      }
+        index: getters.resources.map(resource =>
+          getters.resourceIndexRoute(resource)
+        ),
+        create: getters.resources.map(resource =>
+          getters.resourceCreateRoute(resource)
+        ),
+        edit: getters.resources.map(resource =>
+          getters.resourceEditRoute(resource)
+        )
+      };
     }
   },
-  namespaced: true,
-}
+  namespaced: true
+};

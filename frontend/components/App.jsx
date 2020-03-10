@@ -1,28 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { css, Global } from "@emotion/core";
 import FeatherSprite from "../svgs/feather-sprite.svg";
-import Icon from "./Icon";
+import StructureProvider from "./structure/StructureProvider";
+import ResourceIndex from "../screens/ResourceIndex";
 
-const render = ({ counter }) => (
+const render = () => (
   <>
     {globalStyles()}
+
     <FeatherSprite style={{ display: "none" }} />
 
-    <div
-      css={css`
-        font-size: 3rem;
-        color: purple;
-      `}
-    >
-      <Icon name="check" color="green" />
-      <span>Hello Reactor : {counter}</span>
-    </div>
+    <StructureProvider>
+      {({ routes }) => (
+        <Router>
+          {renderRoutes(routes)}
+
+          {routes.index.map(route => (
+            <Link key={route.path} to={route.path}>
+              {route.props.resource.label}
+            </Link>
+          ))}
+        </Router>
+      )}
+    </StructureProvider>
+  </>
+);
+
+const renderRoutes = routes => (
+  <>
+    {routes.index.map(route => (
+      <Route
+        key={route.path}
+        path={route.path}
+        component={ResourceIndex}
+        {...route.props}
+      />
+    ))}
   </>
 );
 
 const App = () => {
   /** STATE */
-  const [counter, setCounter] = useState(0);
 
   /** METHODS */
 
@@ -30,16 +49,7 @@ const App = () => {
 
   /** EFFECTS */
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCounter(counter + 10);
-    }, 1000);
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [counter]);
-
-  return render({ counter });
+  return render();
 };
 
 const globalStyles = () => (
