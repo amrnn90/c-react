@@ -1,0 +1,33 @@
+// RESET
+@import 'preflight';
+
+// VARIABLES, MIXINS, FUNCTIONS
+@import 'init';
+
+// Libs and Components
+@import './inputs';
+@import './tooltips';
+@import '~simplebar/dist/simplebar.min.css';
+
+
+html {
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    line-height: 1.5;
+    color: var(--grey-5);
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    background: var(--body-color);
+}
+
+.truncate {
+    @include truncate();
+}
+
+.simplebar-scrollbar {
+    &::before {
+        background: var(--grey-9);
+        width: 5px;
+    }
+}
