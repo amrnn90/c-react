@@ -1,0 +1,118 @@
+:root {
+
+  // SPACINGS
+  --sp-px: 1px;
+  --sp-0:  0;
+  --sp-1:  #{pxToRem(4)};
+  --sp-2:  #{pxToRem(8)};
+  --sp-3:  #{pxToRem(12)};
+  --sp-4:  #{pxToRem(16)};
+  --sp-5:  #{pxToRem(20)};
+  --sp-6:  #{pxToRem(24)};
+  --sp-7:  #{pxToRem(28)};
+  --sp-8:  #{pxToRem(32)};
+  --sp-9:  #{pxToRem(36)};
+  --sp-10: #{pxToRem(40)};
+  --sp-11: #{pxToRem(48)};
+  --sp-12: #{pxToRem(56)};
+  --sp-13: #{pxToRem(64)};
+  --sp-14: #{pxToRem(80)};
+  --sp-15: #{pxToRem(96)};
+  --sp-16: #{pxToRem(128)};
+  --sp-17: #{pxToRem(160)};
+  --sp-18: #{pxToRem(192)};
+  --sp-19: #{pxToRem(224)};
+  --sp-20: #{pxToRem(256)};
+  --sp-21: #{pxToRem(512)};
+
+  // FONT SIZES
+  --fz-2xs:  #{pxToRem(10)};
+  --fz-xs:   #{pxToRem(12)};
+  --fz-sm:   #{pxToRem(14)};
+  --fz-base: #{pxToRem(16)};
+  --fz-lg:   #{pxToRem(18)};
+  --fz-xl:   #{pxToRem(20)};
+  --fz-2xl:  #{pxToRem(24)};
+  --fz-3xl:  #{pxToRem(30)};
+  --fz-4xl:  #{pxToRem(36)};
+  --fz-5xl:  #{pxToRem(48)};
+
+  // FONT WEIGHTS
+  --fw-hairline:  100;
+  --fw-thin:      200;
+  --fw-light:     300;
+  --fw-regular:   400;
+  --fw-medium:    500;
+  --fw-semibold:  600;
+  --fw-bold:      700;
+  --fw-extrabold: 800;
+  --fw-black:     900;
+
+  // BORDER RADIUS
+  --br: 5px;
+
+
+  // COLORS
+  --grey-1:  hsl(209, 61%, 16%);
+  --grey-2:  hsl(211, 39%, 23%);
+  --grey-3:  hsl(209, 34%, 30%);
+  --grey-4:  hsl(209, 28%, 39%);
+  --grey-5:  hsl(210, 22%, 49%);
+  --grey-6:  hsl(209, 23%, 60%);
+  --grey-7:  hsl(211, 27%, 70%);
+  --grey-8:  hsl(210, 31%, 80%);
+  --grey-9:  hsl(212, 33%, 89%);
+  --grey-10: hsl(210, 36%, 96%);
+  --grey-11: hsl(205, 45%, 98%);
+
+  --grey-v-1:  209, 61%, 16%;
+  --grey-v-2:  211, 39%, 23%;
+  --grey-v-3:  209, 34%, 30%;
+  --grey-v-4:  209, 28%, 39%;
+  --grey-v-5:  210, 22%, 49%;
+  --grey-v-6:  209, 23%, 60%;
+  --grey-v-7:  211, 27%, 70%;
+  --grey-v-8:  210, 31%, 80%;
+  --grey-v-9:  212, 33%, 89%;
+  --grey-v-10: 210, 36%, 96%;
+  --grey-v-11: 205, 45%, 98%;
+
+
+  --blue-hue: 205;
+  @include colors('blue');
+
+  --cyan-hue: 184;
+  @include colors('cyan');
+
+  --red-hue: 360;
+  @include colors('red');
+
+  --primary-hue: var(--blue-hue);
+  @include colors('primary');
+  --primary: var(--primary-7);
+
+  --success-hue: var(--cyan-hue);
+  @include colors('success');
+
+  --danger-hue: var(--red-hue);
+  @include colors('danger');
+
+  --body-color: var(--grey-11);
+
+  /* LAYOUT */ 
+  --header-height: var(--sp-12);
+  --sidebar-width: var(--sp-19);
+  --main-top-padding: var(--sp-8);
+  --main-horizontal-padding: var(--sp-14);
+
+  /* COMPONENTS */
+  --page-card-horizontal-padding: var(--sp-6);
+  
+  --table-row-pre-width: var(--sp-5);
+  --table-row-post-width: var(--sp-15);
+  --table-row-cells-horizontal-margin: var(--sp-6);
+
+  --input-vertical-padding: var(--sp-3);
+  --input-horizontal-padding: var(--sp-5);
+  --input-border-size: var(--sp-px);
+}

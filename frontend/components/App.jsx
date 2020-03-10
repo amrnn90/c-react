@@ -1,9 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { css, Global } from "@emotion/core";
 import FeatherSprite from "../svgs/feather-sprite.svg";
 import StructureProvider from "./structure/StructureProvider";
 import ResourceIndex from "../screens/ResourceIndex";
+import AppLayout from "./layout/AppLayout";
 
 const render = () => (
   <>
@@ -14,13 +15,7 @@ const render = () => (
     <StructureProvider>
       {({ routes }) => (
         <Router>
-          {renderRoutes(routes)}
-
-          {routes.index.map(route => (
-            <Link key={route.path} to={route.path}>
-              {route.props.resource.label}
-            </Link>
-          ))}
+          <AppLayout>{renderRoutes(routes)}</AppLayout>
         </Router>
       )}
     </StructureProvider>
@@ -30,12 +25,9 @@ const render = () => (
 const renderRoutes = routes => (
   <>
     {routes.index.map(route => (
-      <Route
-        key={route.path}
-        path={route.path}
-        component={ResourceIndex}
-        {...route.props}
-      />
+      <Route key={route.path} path={route.path}>
+        <ResourceIndex resource={route.resource} />
+      </Route>
     ))}
   </>
 );
@@ -56,8 +48,6 @@ const globalStyles = () => (
   <Global
     styles={css`
       body {
-        background: #eee;
-        line-height: 1.5;
       }
 
       span {

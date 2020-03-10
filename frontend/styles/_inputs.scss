@@ -1,0 +1,14 @@
+.field-input {
+  display: block; 
+  width: 100%;
+  background: hsl(var(--primary-hue), 100%, 99%);
+  border-radius: var(--br);
+  padding: var(--input-vertical-padding) var(--input-horizontal-padding);
+  border: var(--input-border-size) solid var(--primary-10);
+  font-size: var(--fz-sm);
+  color: var(--grey-4);
+
+  &.has-error {
+    border-color: var(--danger-8);
+  }
+}

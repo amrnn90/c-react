@@ -1,0 +1,135 @@
+// MEDIA QUERIES
+
+@mixin md-up($breakpoint) {
+    @media only screen and (min-width: $breakpoint) { @content };
+}
+
+@mixin md-down($breakpoint) {
+    @media only screen and (max-width: $breakpoint) { @content };
+}
+
+
+// FLUID UTILITIES
+
+@mixin fl-gen($props, $max-v, $min-v, $max-w, $min-w) {
+    @each $prop in $props {
+        #{$prop}: ($max-v + $min-v ) / 2;
+        #{$prop}: fl($max-v, $min-v, $max-w, $min-w);
+    }
+    @include md-up($max-w) {
+        @each $prop in $props {
+            #{$prop}: $max-v;
+        }
+    }
+    @include md-down($min-w) {
+        @each $prop in $props {
+            #{$prop}: $min-v;
+        }
+    }
+}
+
+// paddings
+@mixin pr($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('padding-right',), $max-v, $min-v, $max-w, $min-w);
+}
+
+@mixin pl($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('padding-left',), $max-v, $min-v, $max-w, $min-w);
+}
+
+@mixin px($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('padding-right', 'padding-left'), $max-v, $min-v, $max-w, $min-w);
+}
+
+@mixin pt($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('padding-top',), $max-v, $min-v, $max-w, $min-w);
+}
+
+@mixin pb($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('padding-bottom',), $max-v, $min-v, $max-w, $min-w);
+}
+
+@mixin py($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('padding-top', 'padding-bottom'), $max-v, $min-v, $max-w, $min-w);
+}
+
+@mixin p($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('padding',), $max-v, $min-v, $max-w, $min-w);
+}
+
+//margins 
+@mixin mr($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('margin-right',), $max-v, $min-v, $max-w, $min-w);
+}
+
+@mixin ml($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('margin-left',), $max-v, $min-v, $max-w, $min-w);
+}
+
+@mixin mx($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('margin-right', 'margin-left'), $max-v, $min-v, $max-w, $min-w);
+}
+
+@mixin mt($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('margin-top',), $max-v, $min-v, $max-w, $min-w);
+}
+
+@mixin mb($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('margin-bottom',), $max-v, $min-v, $max-w, $min-w);
+}
+
+@mixin my($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('margin-top', 'margin-bottom'), $max-v, $min-v, $max-w, $min-w);
+}
+
+@mixin m($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('margin',), $max-v, $min-v, $max-w, $min-w);
+}
+
+// width
+@mixin w($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('width',), $max-v, $min-v, $max-w, $min-w);
+}
+
+// height
+@mixin h($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('height',), $max-v, $min-v, $max-w, $min-w);
+}
+
+// fonts
+@mixin fz($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('font-size',), $max-v, $min-v, $max-w, $min-w);
+}
+
+// TEXT RESTRICTION
+@mixin truncate() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+
+@mixin colors($name) {
+    --#{$name}-1:  hsl(var(--#{$name}-hue),100%, 21%);
+    --#{$name}-2:  hsl(var(--#{$name}-hue), 87%, 29%);
+    --#{$name}-3:  hsl(var(--#{$name}-hue), 82%, 33%);
+    --#{$name}-4:  hsl(var(--#{$name}-hue), 76%, 39%);
+    --#{$name}-5:  hsl(var(--#{$name}-hue), 67%, 45%);
+    --#{$name}-6:  hsl(var(--#{$name}-hue), 65%, 55%);
+    --#{$name}-7:  hsl(var(--#{$name}-hue), 74%, 56%);
+    --#{$name}-8:  hsl(var(--#{$name}-hue), 84%, 74%);
+    --#{$name}-9:  hsl(var(--#{$name}-hue), 97%, 85%);
+    --#{$name}-10: hsl(var(--#{$name}-hue), 79%, 92%);
+
+    --#{$name}-v-1:  var(--#{$name}-hue),100%, 21%;
+    --#{$name}-v-2:  var(--#{$name}-hue), 87%, 29%;
+    --#{$name}-v-3:  var(--#{$name}-hue), 82%, 33%;
+    --#{$name}-v-4:  var(--#{$name}-hue), 76%, 39%;
+    --#{$name}-v-5:  var(--#{$name}-hue), 67%, 45%;
+    --#{$name}-v-6:  var(--#{$name}-hue), 65%, 55%;
+    --#{$name}-v-7:  var(--#{$name}-hue), 74%, 56%;
+    --#{$name}-v-8:  var(--#{$name}-hue), 84%, 74%;
+    --#{$name}-v-9:  var(--#{$name}-hue), 97%, 85%;
+    --#{$name}-v-10: var(--#{$name}-hue), 79%, 92%;
+
+}

@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.28",
+    "@tippyjs/react": "^4.0.0-alpha.1",
     "react": "^16.13.0",
     "react-router-dom": "^5.1.2"
   }

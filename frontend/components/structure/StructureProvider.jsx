@@ -1,28 +1,22 @@
 import React, { createContext, useMemo } from "react";
 
-const { resources, base_path: basePath } = window.structure;
+const { resources, base_path: basePath, api_urls: apiUrls } = window.structure;
 
 const routes = {
   index: resources.map(resource => ({
     path: basePath + "/" + resource.path,
     name: resource.name + ".index",
-    props: {
-      resource
-    }
+    resource
   })),
   create: resources.map(resource => ({
     path: basePath + "/" + resource.path + "/create",
     name: resource.name + ".create",
-    props: {
-      resource
-    }
+    resource
   })),
   edit: resources.map(resource => ({
     path: basePath + "/" + resource.path + "/:id/edit",
     name: resource.name + ".edit",
-    props: {
-      resource
-    }
+    resource
   }))
 };
 
@@ -46,7 +40,8 @@ const StructureProvider = ({ children }) => {
     () => ({
       resources,
       basePath,
-      routes
+      routes,
+      apiUrls
     }),
     []
   );
@@ -57,7 +52,8 @@ const StructureProvider = ({ children }) => {
 export const StructureContext = createContext({
   resources,
   basePath,
-  routes
+  routes,
+  apiUrls
 });
 
 export default StructureProvider;
