@@ -4,11 +4,9 @@ import Modal from "../components/popups/Modal";
 const render = ({ showModal, onHideModal, onButtonClick }) => (
   <div>
     <h2>Template for ResourceIndex</h2>
-    {showModal && (
-      <Modal onHide={onHideModal}>
-        <div>Welcome to modal</div>
-      </Modal>
-    )}
+    <Modal isOpen={showModal} onHide={onHideModal}>
+      <div>Welcome to modal</div>
+    </Modal>
     <button onClick={onButtonClick}>show modal</button>
   </div>
 );

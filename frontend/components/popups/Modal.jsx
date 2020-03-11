@@ -1,25 +1,57 @@
 import React from "react";
 import { css } from "@emotion/core";
 import { useMemo, useCallback } from "react";
+import { motion } from "framer-motion";
 import Backdrop from "./Backdrop";
 
 const render = ({
+  isOpen,
   styles,
+  variants,
   children,
   onModalClick,
   onBackdropClick,
   onEscape
 }) => (
-  <Backdrop onClick={onBackdropClick} onEscape={onEscape}>
-    <div className="modal" css={styles} onClick={onModalClick}>
+  <Backdrop
+    isOpen={isOpen}
+    onClick={onBackdropClick}
+    onEscape={onEscape}
+    animation={{
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      exit: { opacity: 0 },
+      transition: {
+        duration: 1
+      }
+    }}
+  >
+    <motion.div
+      key="modal"
+      className="modal"
+      css={styles}
+      initial={"hide"}
+      animate={isOpen ? "show" : "hide"}
+      variants={variants}
+      onClick={onModalClick}
+    >
       {children}
-    </div>
+    </motion.div>
   </Backdrop>
 );
 
-const Modal = ({ children, onHide }) => {
+const Modal = ({ children, isOpen, onHide }) => {
   /** STATE */
   const styles = useMemo(() => _styles(), []);
+
+  const variants = {
+    show: {
+      translateY: 0
+    },
+    hide: {
+      translateY: -40
+    }
+  };
 
   /** METHODS */
   const hideModal = useCallback(() => {
@@ -43,7 +75,15 @@ const Modal = ({ children, onHide }) => {
 
   /** EFFECTS */
 
-  return render({ styles, children, onBackdropClick, onModalClick, onEscape });
+  return render({
+    isOpen,
+    styles,
+    variants,
+    children,
+    onBackdropClick,
+    onModalClick,
+    onEscape
+  });
 };
 
 const _styles = () => css`

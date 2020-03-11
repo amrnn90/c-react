@@ -28,7 +28,10 @@
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@tippyjs/react": "^4.0.0-alpha.1",
+    "framer-motion": "^1.9.1",
     "react": "^16.13.0",
-    "react-router-dom": "^5.1.2"
+    "react-router-dom": "^5.1.2",
+    "react-spring": "^8.0.27",
+    "resize-observer-polyfill": "^1.5.1"
   }
 }
