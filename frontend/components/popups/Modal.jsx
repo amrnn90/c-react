@@ -17,21 +17,12 @@ const render = ({
     isOpen={isOpen}
     onClick={onBackdropClick}
     onEscape={onEscape}
-    animation={{
-      initial: { opacity: 0 },
-      animate: { opacity: 1 },
-      exit: { opacity: 0 },
-      transition: {
-        duration: 1
-      }
-    }}
+    // exitTransitionDelay={0.05}
   >
     <motion.div
       key="modal"
       className="modal"
       css={styles}
-      initial={"hide"}
-      animate={isOpen ? "show" : "hide"}
       variants={variants}
       onClick={onModalClick}
     >
@@ -45,11 +36,14 @@ const Modal = ({ children, isOpen, onHide }) => {
   const styles = useMemo(() => _styles(), []);
 
   const variants = {
-    show: {
-      translateY: 0
+    open: {
+      opacity: 1,
+      translateY: 0,
+      transition: { delay: 0.2 }
     },
-    hide: {
-      translateY: -40
+    close: {
+      opacity: 0,
+      translateY: -80
     }
   };
 

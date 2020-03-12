@@ -8,6 +8,7 @@ import React, {
 import { css } from "@emotion/core";
 import { motion, AnimatePresence } from "framer-motion";
 import { Portal } from "../portal";
+import _ from "../../lodash";
 
 const render = ({
   isOpen,
@@ -38,23 +39,44 @@ const render = ({
   </AnimatePresence>
 );
 
-const Backdrop = ({ children, isOpen, onClick, onEscape, animation }) => {
+const Backdrop = ({
+  children,
+  isOpen,
+  onClick,
+  onEscape,
+  animation: _animation,
+  exitTransitionDelay
+}) => {
   /** STATE */
   const [backdropEl, setBackdropEl] = useState(null);
   const backdropRef = useRef(el => {
     setBackdropEl(el);
   });
 
-  animation = useMemo(
-    () =>
-      animation || {
-        initial: { opacity: 0 },
-        animate: { opacity: 1 },
-        exit: { opacity: 0 }
-      },
-    [animation]
-  );
+  const animation = useMemo(() => {
+    if (_animation) return _animation;
 
+    const defaultAnimation = {
+      variants: {
+        open: { opacity: 1 },
+        close: { opacity: 0 }
+      },
+      transition: { duration: 0.2 },
+      initial: "close",
+      animate: "open",
+      exit: "close"
+    };
+
+    if (exitTransitionDelay) {
+      _.set(
+        defaultAnimation,
+        "variants.close.transition.delay",
+        exitTransitionDelay
+      );
+    }
+
+    return defaultAnimation;
+  }, [_animation, exitTransitionDelay]);
   /** METHODS */
 
   /** HANDLERS */

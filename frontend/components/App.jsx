@@ -53,7 +53,7 @@ const globalStyles = () => (
   <Global
     styles={css`
       body {
-        height: 2000px;
+        /* height: 2000px; */
       }
 
       span {
